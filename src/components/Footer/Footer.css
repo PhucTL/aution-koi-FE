@@ -1,0 +1,23 @@
+footer {
+    background-color: #E97676;
+    box-shadow: none;
+    bottom: 0;
+    position: relative;
+    width: 100%;
+}
+
+div.col-md-6.col-lg-3.mb-4.mb-md-0 {
+    padding: 0 30px;
+}
+
+h5.text-uppercase {
+    text-align: left;
+    background-color: black;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    padding-left: 10px;
+}
+
+ul.list-unstyled>li {
+    text-align: right;
+}

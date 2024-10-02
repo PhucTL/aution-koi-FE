@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "bf47",
+      "fullname": "Khoa Nguyễn",
+      "email": "khoanguyen@gmail.com",
+      "phone": "0899463017",
+      "address": "D4/16C KP4, Tân Túc, Bình Chánh, TP.HCM",
+      "password": "asd",
+      "role": 1,
+      "active": 1,
+      "created": "2024-09-23T10:12:18.941Z",
+      "updated": "2024-09-23T10:12:18.941Z"
+    },
+    {
+      "id": "ccc0",
+      "fullname": "Michael Jackson",
+      "email": "michaeljack@gmail.com",
+      "phone": "0473918274",
+      "address": "New York, USA",
+      "password": "michaeljackson",
+      "role": 1,
+      "active": 1,
+      "created": "2024-09-23T13:21:32.164Z",
+      "updated": "2024-09-23T13:21:32.164Z"
+    },
+    {
+      "id": "56e7",
+      "fullname": "Luffy Monkey D",
+      "email": "luffytarou@gmail.com",
+      "phone": "0195837429",
+      "address": "Foosha Village, East Blue",
+      "password": "goingmerry",
+      "role": 1,
+      "active": 1,
+      "created": "2024-09-23T13:26:33.487Z",
+      "updated": "2024-09-23T13:26:33.487Z"
+    }
+  ],
+
+  "breeders": [
+    {
+      
+    }
+  ]
+}

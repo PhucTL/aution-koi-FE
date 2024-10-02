@@ -1,0 +1,55 @@
+nav {
+    background-color: black;
+    position: fixed;
+    top: 0;
+}
+
+img#logo {
+    width: 100px;
+    height: 100px;
+}
+
+a.navbar-brand {
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+a.navbar-brand:hover {
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+a.navbar-brand:focus {
+    color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+a.nav-link {
+    color: white;
+    font-size: large;
+}
+
+a.nav-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+a.nav-link:focus {
+    color: white;
+    font-weight: bold;
+}
+
+a#regis {
+    color: #D93D04;
+}
+
+a#regis:hover {
+    color: #D93D04;
+}
+
+div.dropdown-menu.show {
+    z-index: 999;
+}

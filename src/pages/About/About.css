@@ -1,0 +1,11 @@
+div.main {
+    background-color: #F2F2F2;
+}
+
+.content1 {
+    background: url(https://i.redd.it/afayy8buj7q31.jpg);
+    /* background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; */
+    color: orange;
+}
