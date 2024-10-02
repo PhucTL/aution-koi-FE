@@ -5,6 +5,6 @@ import categoryReducer from "./categorySlice"
 export default configureStore ({
     reducer: {
         auth: authReducer,
-        categories: categoryReducer
+        category: categoryReducer
     }
 })

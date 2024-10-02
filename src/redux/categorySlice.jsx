@@ -12,14 +12,14 @@ const categorySlice = createSlice ({
     },
 
     reducers: {
-        getCategoryStart: (state) => {
+        getCategoriesStart: (state) => {
             state.categories.isFetching = true
         },
-        getCategorySuccess: (state, action) => {
+        getCategoriesSuccess: (state, action) => {
             state.categories.isFetching = false,
             state.categories.allCategories = action.payload
         },
-        getCategoryFailed: (state) => {
+        getCategoriesFailed: (state) => {
             state.categories.isFetching = false,
             state.categories.error = true
         }
@@ -27,9 +27,9 @@ const categorySlice = createSlice ({
 })
 
 export const {
-    getCategoryStart,
-    getCategorySuccess,
-    getCategoryFailed
+    getCategoriesStart,
+    getCategoriesSuccess,
+    getCategoriesFailed
 } = categorySlice.actions
 
 export default categorySlice.reducer

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import Slider from "react-slick";
 import './Home.css'
+import { getAllCategories } from "../../redux/apiRequest";
+import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
     const settings = {
@@ -11,11 +13,13 @@ function Home() {
         slidesToScroll: 1,
         autoplay: true,        // Kích hoạt autoplay
         autoplaySpeed: 3000,   // Tốc độ chuyển đổi (3000ms = 3 giây)
-    };
+    }
+    const dispatch = useDispatch()
+    const categoryList = useSelector((state) => state.category.categories.allCategories)
 
-    // useEffect = () => {
-    //     const categories[] = 
-    // }
+    useEffect(() => {
+        getAllCategories(dispatch)
+    }, [])
 
     return (
         <body>
@@ -44,49 +48,41 @@ function Home() {
                     </div>
                 </div>
                 <hr />
-                
+
                 <h1 className="display-6 fw-bold text-body-emphasis lh-1 mb-3">Our Breeders</h1>
 
                 <div className="row flex-lg-row align-items-center g-5 py-5">
-
-                    <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details »</a></p>
-                    </div>
-
-                    <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details »</a></p>
-                    </div>
-
-                    <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details »</a></p>
-                    </div>
-
-                    <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details »</a></p>
-                    </div>
-
-                    <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
-                        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-                        <h2 className="fw-normal">Heading</h2>
-                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                        <p><a className="btn btn-secondary" href="#">View details »</a></p>
-                    </div>
+                    {categoryList.map((catag) => {
+                        return (
+                            <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
+                                <svg
+                                    className="bd-placeholder-img rounded-circle"
+                                    width="140"
+                                    height="140"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    role="img"
+                                    aria-label="Placeholder"
+                                    preserveAspectRatio="xMidYMid slice"
+                                    focusable="false"
+                                >
+                                    <title>Placeholder</title>
+                                    <image
+                                        href={catag.image} // Đường dẫn đến ảnh
+                                        width="100%"
+                                        height="100%"
+                                        preserveAspectRatio="xMidYMid slice"
+                                    />
+                                </svg>
+                                <h2 className="fw-normal">{catag.name}</h2>
+                                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                                <p><a className="btn btn-secondary" href="#">View details »</a></p>
+                            </div>
+                        )
+                    })}
                 </div>
 
-            </div>            
-            
+            </div>
+
         </body>
     )
 }

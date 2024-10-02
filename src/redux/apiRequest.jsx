@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getProfileFailed, getProfileStart, getProfileSuccess, loginFailed, loginStart, loginSuccess, logoutStart, registerFailed, registerStart, registerSuccess } from "./authSlice";
-import { getCategoryFailed, getCategoryStart, getCategorySuccess } from "./categorySlice";
+import { getCategoriesStart, getCategoriesSuccess, getCategoriesFailed } from "./categorySlice";
 
 export const loginPayload = async (payload, dispatch, navigate) => {
     dispatch(loginStart())
@@ -38,20 +38,20 @@ export const getUserProfile = async (accessToken, dispatch, navigate) => {
 } 
 
 export const getAllCategories = async (dispatch) => {
-    dispatch(getCategoryStart())
+    dispatch(getCategoriesStart())
     try {
         const res = await axios.get("https://api.escuelajs.co/api/v1/categories/")
-        dispatch(getCategorySuccess(res.data))
+        dispatch(getCategoriesSuccess(res.data))
     } catch (err) {
-        dispatch(getCategoryFailed())
+        dispatch(getCategoriesFailed())
     }
 }
 
-export const logOut = async (dispatch, navigate) => {
-    dispatch(logoutStart())
-    try{
-        // await axios.
-    } catch (err) {
+// export const logOut = async (dispatch, navigate) => {
+//     dispatch(logoutStart())
+//     try{
+//         // await axios.
+//     } catch (err) {
 
-    }
-}
+//     }
+// }
