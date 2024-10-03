@@ -52,7 +52,7 @@ function Home() {
                 <h1 className="display-6 fw-bold text-body-emphasis lh-1 mb-3">Our Breeders</h1>
 
                 <div className="row flex-lg-row align-items-center g-5 py-5">
-                    {categoryList.map((catag) => {
+                    {categoryList?.map((catag) => {
                         return (
                             <div className="col-lg-4" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "3vh" }}>
                                 <svg

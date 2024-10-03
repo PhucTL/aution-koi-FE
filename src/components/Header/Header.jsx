@@ -28,7 +28,7 @@ function Header() {
                     <Nav>
                         {name ? (
                             <>
-                                <Nav.Link as={Link} to="/profile">Hi, <span>{name}</span></Nav.Link>
+                                <Nav.Link as={Link} to="/userProfile">Hi, <span>{name}</span></Nav.Link>
                                 <Nav.Link as={Link} to="/logout" id="regis">
                                     Log out
                                 </Nav.Link>
