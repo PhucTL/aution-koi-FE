@@ -44,7 +44,7 @@ function App() {
     return (
       console.log(CURRENT_USER_ROLE)
     )
-  }, [])
+  }, [CURRENT_USER_ROLE])
 
   return (
     <Router>
