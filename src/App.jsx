@@ -24,16 +24,24 @@ function App() {
     return <>{children}</>
   }
 
-  function CustomerElement({ children }) {
-    if (CURRENT_USER_ROLE === "customer") {
+  function MemberElement({ children }) {
+    if (CURRENT_USER_ROLE === "MEMBER") {
       return <>{children}</>
     } else {
       return <Navigate to={"/login"}/>
     }
   }
 
-  function AdminElement({ children }) {
-    if (CURRENT_USER_ROLE === "admin") {
+  function StaffElement({ children }) {
+    if (CURRENT_USER_ROLE === "STAFF") {
+      return <>{children}</>
+    } else {
+      return <Navigate to={"/login"}/>
+    }
+  }
+
+  function ManagerElement({ children }) {
+    if (CURRENT_USER_ROLE === "MANAGER") {
       return <>{children}</>
     } else {
       return <Navigate to={"/login"}/>
@@ -54,12 +62,12 @@ function App() {
           <Routes>
             <Route path="/" element={<PublicElement><Home /></PublicElement>} />
             <Route path="/about" element={<PublicElement><About /></PublicElement>} />
-            <Route path="/currentAuction" element={<CustomerElement><CurrentAuction /></CustomerElement>} />
+            <Route path="/currentAuction" element={<MemberElement><CurrentAuction /></MemberElement>} />
             <Route path="/pastAuction" element={<PublicElement><PastAuction /></PublicElement>} />
             <Route path="/login" element={<PublicElement><Login /></PublicElement>} />
             <Route path="/register" element={<PublicElement><Register /></PublicElement>} />
-            <Route path='/userProfile' element={<CustomerElement><UserProfile /></CustomerElement>}></Route>
-            <Route path='/admin' element={<AdminElement><Admin /></AdminElement>} />
+            <Route path='/userProfile' element={<MemberElement><UserProfile /></MemberElement>}></Route>
+            <Route path='/manager' element={<ManagerElement><Manager /></ManagerElement>} />
             <Route path='*' element={<div>Page Not Found!</div>} />
           </Routes>
         </div>
@@ -69,8 +77,8 @@ function App() {
   )
 }
 
-function Admin() {
-  return <div>Admin Page</div>
+function Manager() {
+  return <div>Manager Page</div>
 }
 
 export default App

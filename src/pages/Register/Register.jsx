@@ -8,22 +8,24 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [avatar, setAvatar] = useState("");
+    const [fullname, setFullname] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
         const newUser = {
-            email: email, /* Khởi tạo biến thì phải trùng với tên trong dtb */
-            name: name,
-            avatar: avatar,
+            username: username, /* Khởi tạo biến thì phải trùng với tên trong dtb */
             password: password,
+            fullname: fullname,
+            phone: phone,
+            address: address,
         }
-
+        console.log(newUser)
         registerUser(newUser, dispatch, navigate)
     }
 
@@ -39,32 +41,14 @@ function Register() {
                         <form onSubmit={handleRegister}>
                             <div class="form-floating mb-3">
                                 <input
-                                    type="email"
+                                    type="text"
                                     class="form-control rounded-3"
                                     id="floatingInput"
                                     placeholder="name@example.com"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setUsername(e.target.value)}
                                 />
-                                <label for="floatingInput">Email address</label>
+                                <label for="floatingInput">Username</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="text"
-                                    class="form-control rounded-3"
-                                    id="floatingInput"
-                                    placeholder="name@example.com"
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                                <label for="floatingInput">Name</label>
-                            </div> 
-                            <div class="form-floating mb-3">
-                                <input type="text"
-                                    class="form-control rounded-3"
-                                    id="floatingInput"
-                                    placeholder="name@example.com"
-                                    onChange={(e) => setAvatar(e.target.value)}
-                                />
-                                <label for="floatingInput">Avatar</label>
-                            </div> 
                             <div class="form-floating mb-3">
                                 <input
                                     type="password"
@@ -75,6 +59,33 @@ function Register() {
                                 />
                                 <label for="floatingPassword">Password</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input type="text"
+                                    class="form-control rounded-3"
+                                    id="floatingInput"
+                                    placeholder="name@example.com"
+                                    onChange={(e) => setFullname(e.target.value)}
+                                />
+                                <label for="floatingInput">Full Name</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="text"
+                                    class="form-control rounded-3"
+                                    id="floatingInput"
+                                    placeholder="name@example.com"
+                                    onChange={(e) => setPhone(e.target.value)}
+                                />
+                                <label for="floatingInput">Phone</label>
+                            </div> 
+                            <div class="form-floating mb-3">
+                                <input type="text"
+                                    class="form-control rounded-3"
+                                    id="floatingInput"
+                                    placeholder="name@example.com"
+                                    onChange={(e) => setAddress(e.target.value)}
+                                />
+                                <label for="floatingInput">Address</label>
+                            </div> 
                             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-outline-danger" type="submit">Register</button>
                         </form>
                     </div>

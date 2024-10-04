@@ -1,13 +1,14 @@
 import axios from "axios";
-import { getProfileFailed, getProfileStart, getProfileSuccess, loginFailed, loginStart, loginSuccess, logoutStart, registerFailed, registerStart, registerSuccess } from "./authSlice";
+import { logoutFailed, logoutSuccess, logoutStart, getProfileFailed, getProfileStart, getProfileSuccess, loginFailed, loginStart, loginSuccess, registerFailed, registerStart, registerSuccess } from "./authSlice";
 import { getCategoriesStart, getCategoriesSuccess, getCategoriesFailed } from "./categorySlice";
 
 export const loginPayload = async (payload, dispatch, navigate) => {
     dispatch(loginStart())
     try {
-        const res = await axios.post("https://api.escuelajs.co/api/v1/auth/login", payload)
+        const res = await axios.post("http://localhost:8081/auctionkoi/auth/token", payload)
         dispatch(loginSuccess(res.data))
-        getUserProfile(res.data.access_token, dispatch, navigate)
+        console.log(res.data.result.token)
+        getUserProfile(res.data.result.token, dispatch, navigate)
     } catch (err) {
         dispatch(loginFailed())
     } 
@@ -16,7 +17,7 @@ export const loginPayload = async (payload, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart())
     try {
-        await axios.post("https://api.escuelajs.co/api/v1/users/", user)
+        await axios.post("http://localhost:8081/auctionkoi/users/create", user)
         dispatch(registerSuccess())
         navigate("/login")
     } catch (err) {
@@ -27,8 +28,8 @@ export const registerUser = async (user, dispatch, navigate) => {
 export const getUserProfile = async (accessToken, dispatch, navigate) => {
     dispatch(getProfileStart())
     try{
-        const res = await axios.get("https://api.escuelajs.co/api/v1/auth/profile", {
-            headers: {Authorization: `Bearer ${accessToken}`}
+        const res = await axios.get("http://localhost:8081/auctionkoi/auth/profile", {
+            headers: {Authorization:`Bearer ${accessToken}`}
         })
         dispatch(getProfileSuccess(res.data))
         navigate("/")
@@ -47,11 +48,13 @@ export const getAllCategories = async (dispatch) => {
     }
 }
 
-// export const logOut = async (dispatch, navigate) => {
-//     dispatch(logoutStart())
-//     try{
-//         // await axios.
-//     } catch (err) {
-
-//     }
-// }
+export const logOut = async (dispatch, navigate) => {
+    dispatch(logoutStart())
+    try{
+        // await axiosJWT.post("...")
+        dispatch(logoutSuccess())
+        navigate("/login")
+    } catch (err) {
+        dispatch(logoutFailed())
+    }
+}

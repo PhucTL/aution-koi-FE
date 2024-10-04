@@ -64,11 +64,12 @@ const authSlice = createSlice ({
         },
 
         logoutStart: (state) => {
-            state.login.isFetching = true
+            state.logout.isFetching = true
         },
         logoutSuccess: (state) => {
             state.logout.isFetching = false,
             state.login.currentToken = null,
+            state.profile.currentUser = null,
             state.logout.error = false
         },
         logoutFailed: (state) => {

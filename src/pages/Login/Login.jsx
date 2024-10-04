@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Login() {
     const handleLogin = (e) => {
         e.preventDefault();
         const payload = {
-            email: email,
+            username: username,
             password: password
         }
         
@@ -33,13 +33,13 @@ function Login() {
                         <div className="modal-body p-5 pt-0">
                             <div className="form-floating mb-3">
                                 <input
-                                    type="email"
+                                    type="text"
                                     className="form-control rounded-3"
                                     id="floatingInput"
                                     placeholder="name@example.com"
-                                    onChange={e => setEmail(e.target.value)}
+                                    onChange={e => setUsername(e.target.value)}
                                 />
-                                <label for="floatingInput">Email</label>
+                                <label for="floatingInput">Username</label>
                             </div>
                             <div className="form-floating mb-3">
                                 <input
