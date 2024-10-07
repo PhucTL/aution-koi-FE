@@ -1,4 +1,5 @@
 import axios from "axios";
+import {GoogleLogin} from "react-google-login"; 
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { getUserProfile, loginPayload } from "../../redux/apiRequest";
@@ -19,6 +20,10 @@ function Login() {
         }
         
         loginPayload(payload, dispatch, navigate)
+    }
+
+    async function handleGoogleLogin() {
+        
     }
     
 

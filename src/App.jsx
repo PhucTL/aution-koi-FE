@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Header from './components/Header/Header.jsx'
-import Home from './pages/Home/Home.jsx'
+import Home from './pages/Home/Home.jsx';
 import Login from './pages/Login/Login.jsx'
 import About from './pages/About/About.jsx'
 import Register from './pages/Register/Register.jsx'
@@ -12,12 +12,12 @@ import CurrentAuction from './pages/CurrentAuction/CurrentAuction.jsx'
 import PastAuction from './pages/PastAuction/PastAuction.jsx'
 import DemoAxios from './components/DemoAxios.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import UserProfile from './pages/UserProfile/userProfile.jsx';
+import MemberProfile from './pages/MemberProfile/MemberProfile.jsx';
 
 
 
 function App() {
-  const CURRENT_USER_ROLE = useSelector((state) => state.auth.profile.currentUser ? state.auth.profile.currentUser.role : "guest")
+  const CURRENT_USER_ROLE = useSelector((state) => state.auth.profile.currentUser ? state.auth.profile.currentUser.role : "GUEST")
   // const CURRENT_USER_ROLE = "customer"
 
   function PublicElement({ children }) {
@@ -48,25 +48,20 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    return (
-      console.log(CURRENT_USER_ROLE)
-    )
-  }, [CURRENT_USER_ROLE])
-
   return (
     <Router>
       <div className='wrapper'>
-        <Header />
+        <Header userRole={CURRENT_USER_ROLE}/>
         <div className='main'>
           <Routes>
-            <Route path="/" element={<PublicElement><Home /></PublicElement>} />
+            <Route path="/" element={<PublicElement><Home userRole={CURRENT_USER_ROLE}/></PublicElement>} />
             <Route path="/about" element={<PublicElement><About /></PublicElement>} />
-            <Route path="/currentAuction" element={<MemberElement><CurrentAuction /></MemberElement>} />
             <Route path="/pastAuction" element={<PublicElement><PastAuction /></PublicElement>} />
             <Route path="/login" element={<PublicElement><Login /></PublicElement>} />
             <Route path="/register" element={<PublicElement><Register /></PublicElement>} />
-            <Route path='/userProfile' element={<MemberElement><UserProfile /></MemberElement>}></Route>
+            <Route path="/currentAuction" element={<MemberElement><CurrentAuction /></MemberElement>} />
+            <Route path='/userProfile' element={<MemberElement><MemberProfile /></MemberElement>}/>
+            
             <Route path='/manager' element={<ManagerElement><Manager /></ManagerElement>} />
             <Route path='*' element={<div>Page Not Found!</div>} />
           </Routes>

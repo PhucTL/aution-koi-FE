@@ -13,6 +13,7 @@ import {
 } from 'redux-persist';
 import sessionStorage from 'redux-persist/lib/storage/session'; // Sử dụng sessionStorage
 
+
 // Cấu hình persist cho auth (hoặc các slice khác nếu cần)
 const persistConfig = {
   key: 'auth',
@@ -26,7 +27,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    category: categoryReducer,
+    category: categoryReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

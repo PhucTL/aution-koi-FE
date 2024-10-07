@@ -1,6 +1,6 @@
-import './UserProfile.css'
+import './MemberProfile.css'
 
-function UserProfile() {
+function MemberProfile() {
     return (
       <div>
         <p>User Profile</p>
@@ -9,4 +9,4 @@ function UserProfile() {
     )
   }
 
-export default UserProfile
+export default MemberProfile
