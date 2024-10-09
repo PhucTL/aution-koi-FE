@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.Auction {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: left;
+  font-size: 32px;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.create-btn {
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.create-btn:hover {
+  background-color: #f0f0f0;
+}
+tr:last-child td {
+  border-bottom: none;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.status.active {
+  color: #00c853;
+  background-color: #e0ffe0;
+  border: 1px solid #00c853;
+}
+
+.status.end {
+  color: #ff3d00;
+  background-color: #ffebee;
+  border: 1px solid #ff3d00;
+}
