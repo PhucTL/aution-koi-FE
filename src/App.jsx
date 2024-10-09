@@ -4,15 +4,16 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Header from './components/Header/Header.jsx'
-import Home from './pages/Home/Home.jsx';
+import Home from './pages/Home/Home.jsx'
 import Login from './pages/Login/Login.jsx'
 import About from './pages/About/About.jsx'
+import Profile from './pages/Profile/Profile.jsx'
 import Register from './pages/Register/Register.jsx'
 import CurrentAuction from './pages/CurrentAuction/CurrentAuction.jsx'
 import PastAuction from './pages/PastAuction/PastAuction.jsx'
-import DemoAxios from './components/DemoAxios.jsx';
-import Footer from './components/Footer/Footer.jsx';
-import MemberProfile from './pages/MemberProfile/MemberProfile.jsx';
+import Forbidden403 from './pages/Forbidden403/Forbidden403.jsx'
+import DemoAxios from './components/DemoAxios.jsx'
+import Footer from './components/Footer/Footer.jsx'
 
 
 
@@ -48,6 +49,10 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    console.log(CURRENT_USER_ROLE);
+  },[])
+
   return (
     <Router>
       <div className='wrapper'>
@@ -59,10 +64,13 @@ function App() {
             <Route path="/pastAuction" element={<PublicElement><PastAuction /></PublicElement>} />
             <Route path="/login" element={<PublicElement><Login /></PublicElement>} />
             <Route path="/register" element={<PublicElement><Register /></PublicElement>} />
+            <Route path='/profile' element={<PublicElement><Profile userRole={CURRENT_USER_ROLE}/></PublicElement>}/>
+
             <Route path="/currentAuction" element={<MemberElement><CurrentAuction /></MemberElement>} />
-            <Route path='/userProfile' element={<MemberElement><MemberProfile /></MemberElement>}/>
-            
+
             <Route path='/manager' element={<ManagerElement><Manager /></ManagerElement>} />
+
+            <Route path='/forbidden403' element={<Forbidden403 />}/>
             <Route path='*' element={<div>Page Not Found!</div>} />
           </Routes>
         </div>

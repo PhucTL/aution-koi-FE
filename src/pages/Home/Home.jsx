@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import './Home.css'
 import { getAllCategories } from "../../redux/apiRequest";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({userRole}) => {
+
     return (
         <body>
             {userRole === "MANAGER" ? (
