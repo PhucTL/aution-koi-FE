@@ -23,7 +23,9 @@ import Member from "./pages/Member/Member.jsx";
 import Breeder from "./pages/Breeder/Breeder.jsx";
 import Staff from "./pages/Staff/ManageStaff.jsx";
 import Request from "./pages/Request/MRequest.jsx";
-
+import StaffRequest from "./pages/StaffRequest/Request.jsx";
+import Auction from "./pages/Auction/Auction.jsx";
+import CreateRequest from "./pages/CreateRequest/CreateRequest.jsx";
 function App() {
   const CURRENT_USER_ROLE = useSelector((state) =>
     state.auth.profile.currentUser
@@ -60,6 +62,13 @@ function App() {
     }
   }
 
+  function BreederElement({ children }) {
+    if (CURRENT_USER_ROLE === "BREEDER") {
+      return <>{children}</>;
+    } else {
+      return <Navigate to={"/login"} />;
+    }
+  }
   useEffect(() => {
     console.log(CURRENT_USER_ROLE);
   }, []);
@@ -126,14 +135,6 @@ function App() {
                 </MemberElement>
               }
             />
-            <Route
-              path="/manager"
-              element={
-                <ManagerElement>
-                  <Manager />
-                </ManagerElement>
-              }
-            />
 
             <Route
               path="/member"
@@ -171,6 +172,33 @@ function App() {
               }
             />
 
+            <Route
+              path="/staffrequest"
+              element={
+                <StaffElement>
+                  <StaffRequest />
+                </StaffElement>
+              }
+            />
+
+            <Route
+              path="/auction"
+              element={
+                <StaffElement>
+                  <Auction />
+                </StaffElement>
+              }
+            />
+
+            <Route
+              path="/createrequest"
+              element={
+                <BreederElement>
+                  <CreateRequest />
+                </BreederElement>
+              }
+            />
+
             <Route path="/forbidden403" element={<Forbidden403 />} />
             <Route path="*" element={<div>Page Not Found!</div>} />
           </Routes>
@@ -179,10 +207,6 @@ function App() {
       </div>
     </Router>
   );
-}
-
-function Manager() {
-  return <div>Manager Page</div>;
 }
 
 export default App;

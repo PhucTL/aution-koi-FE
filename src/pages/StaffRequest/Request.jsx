@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./Request.css";
-import "../../style/Table.css";
+
 const Modal = ({ show, onClose, children }) => {
   if (!show) {
     return null;

@@ -12,6 +12,8 @@ function Header({ userRole }) {
         <ManagerNavbar />
       ) : userRole === "BREEDER" ? (
         <BreederNavbar />
+      ) : userRole === "STAFF" ? (
+        <StaffNavbar />
       ) : (
         <MemberHeader />
       )}
@@ -240,31 +242,112 @@ const BreederNavbar = () => {
             </Nav.Link>
             <Nav.Link
               as={Link}
-              to="/about"
+              to="/createrequest"
               onClick={() => handleUserTitle(user?.fullname)}
             >
-              About
+              Request
             </Nav.Link>
-            <NavDropdown
-              title={auctionTitle}
-              id="collapsible-nav-dropdown"
-              menuVariant="dark"
+          </Nav>
+          <Nav>
+            {user?.fullname ? (
+              <>
+                <Navbar.Collapse id="navbar-white-example">
+                  <Nav>
+                    <NavDropdown
+                      id="nav-dropdown-dark-example"
+                      title={userTitle ? userTitle : user.fullname}
+                      menuVariant="dark"
+                    >
+                      <NavDropdown.Item
+                        as={Link}
+                        to="/profile"
+                        onClick={() => handleUserTitle(user.fullname)}
+                      >
+                        Profile
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => handleUserTitle("Your Balance")}
+                      >
+                        Your Balance
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        onClick={() => handleUserTitle("Payment History")}
+                      >
+                        Payment History
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
+                <Nav.Link id="regis" onClick={handleLogout}>
+                  Log out
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register" id="regis">
+                  Register
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
+
+const StaffNavbar = () => {
+  const user = useSelector((state) => state.auth.profile?.currentUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userTitle, setUserTitle] = useState(user ? user.fullname : null);
+  const [auctionTitle, setAuctionTitle] = useState("Auction");
+
+  const handleUserTitle = (title) => {
+    setUserTitle(title);
+  };
+
+  const handleAuctionTitle = (title) => {
+    setAuctionTitle(title);
+    handleUserTitle(user?.fullname);
+  };
+
+  const handleLogout = () => {
+    logOut(dispatch, navigate);
+  };
+
+  return (
+    <Navbar collapseOnSelect expand="lg">
+      <Container>
+        <Navbar.Brand as={Link} to="/">
+          <img
+            src="/logo/betokoi.png"
+            alt="Logo Betokoi"
+            id="logo"
+            onClick={() => handleUserTitle(user?.fullname)}
+          />
+          Betokoi for Staff
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link
+              as={Link}
+              to="/auction"
+              onClick={() => handleUserTitle(user?.fullname)}
             >
-              <NavDropdown.Item
-                as={Link}
-                to="/currentAuction"
-                onClick={() => handleAuctionTitle("Current Auction")}
-              >
-                Current Auction
-              </NavDropdown.Item>
-              <NavDropdown.Item
-                as={Link}
-                to="/pastAuction"
-                onClick={() => handleAuctionTitle("Past Auction")}
-              >
-                Past Auction
-              </NavDropdown.Item>
-            </NavDropdown>
+              Auction
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/staffrequest"
+              onClick={() => handleUserTitle(user?.fullname)}
+            >
+              Request
+            </Nav.Link>
           </Nav>
           <Nav>
             {user?.fullname ? (
