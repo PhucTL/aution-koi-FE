@@ -11,10 +11,10 @@
 }
 @media (max-width: 450px) {
   .h-custom {
-  height: 100%;
+    height: 100%;
   }
 }
 
 div.p-3.my-5.h-custom {
-    padding: 16px 30px;
+  padding: 16px 30px;
 }

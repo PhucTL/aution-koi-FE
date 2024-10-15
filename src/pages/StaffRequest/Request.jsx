@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import "./Request.css";
+import styles from "./Request.module.css";
 
 const Modal = ({ show, onClose, children }) => {
   if (!show) {
     return null;
   }
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-modal" onClick={onClose}>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalsContent}>
+        <button className={styles.closeModal} onClick={onClose}>
           &times;
         </button>
         {children}
@@ -29,6 +29,22 @@ function Request() {
     },
   ]);
   const [requests, setRequests] = useState([
+    {
+      breeder: "Sakura Ginnin",
+      fishName: "Kohaku",
+      auctionMethod: 1,
+      startPrice: "$150",
+      buyoutPrice: "$150",
+      time: "14/02/2025 20:00",
+    },
+    {
+      breeder: "Sakura Ginnin",
+      fishName: "Kohaku",
+      auctionMethod: 1,
+      startPrice: "$150",
+      buyoutPrice: "$150",
+      time: "14/02/2025 20:00",
+    },
     {
       breeder: "Sakura Ginnin",
       fishName: "Kohaku",
@@ -94,7 +110,7 @@ function Request() {
     endTime: "",
   });
   const handleAuctionInput = (e) => {
-    const [name, value] = e.target;
+    const { name, value } = e.target;
     setNewAuction((prevState) => ({
       ...prevState,
       [name]: value,
@@ -122,8 +138,8 @@ function Request() {
   };
   return (
     <div>
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Koi Breeder</th>
@@ -142,21 +158,21 @@ function Request() {
                 <td>{request.breeder}</td>
                 <td>{request.fishName}</td>
                 <td>
-                  <button className="view-btn">View</button>
+                  <button className={styles.viewBtn}>View</button>
                 </td>
                 <td>{request.auctionMethod}</td>
                 <td>{request.startPrice}</td>
                 <td>{request.buyoutPrice}</td>
                 <td>{request.time}</td>
-                <td className="action-icons">
+                <td className={styles.actionIcons}>
                   <button
-                    className="action-btn edit-btn"
+                    className={styles.actionBtn + " " + styles.editBtn}
                     onClick={() => setShowAddModal(true)}
                   >
                     <FontAwesomeIcon icon={faCheck} />
                   </button>
                   <button
-                    className="action-btn delete-btn"
+                    className={styles.actionBtn + " " + styles.deleteBtn}
                     onClick={() => handleDeleteRequests(request.breeder)}
                   >
                     <FontAwesomeIcon icon={faXmark} />
@@ -170,6 +186,7 @@ function Request() {
       <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
         <h2>Add New Auction</h2>
         <input
+          className={styles.roundedInput + " " + styles.input}
           type="text"
           name="id"
           value={newAuction.id}
@@ -182,6 +199,7 @@ function Request() {
           value={newAuction.name}
           onChange={handleAuctionInput}
           placeholder="Name"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -189,6 +207,7 @@ function Request() {
           value={newAuction.startTime}
           onChange={handleAuctionInput}
           placeholder="StartTime"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -196,9 +215,12 @@ function Request() {
           value={newAuction.endTime}
           onChange={handleAuctionInput}
           placeholder="EndTime"
+          className={styles.roundedInput}
         />
 
-        <button onClick={handleAddAuction}>Create Auction</button>
+        <button className="btn btn-danger" onClick={handleAddAuction}>
+          Create Auction
+        </button>
       </Modal>
     </div>
   );

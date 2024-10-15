@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
-import "./CreateRequest.css";
-
+import styles from "./CreateRequest.module.css";
+const Modal = ({ show, onClose, children }) => {
+  if (!show) {
+    return null;
+  }
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalsContent}>
+        <button className={styles.closeModal} onClick={onClose}>
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
 function CreateRequest() {
   const [requests, setRequests] = useState([
     {
@@ -23,23 +37,52 @@ function CreateRequest() {
       startTime: "2024-10-02T12:00",
       endTime: "2024-10-02T17:00",
     },
+    {
+      id: 2,
+      fishName: "Betta",
+      method: "Buy Now",
+      startPrice: "150",
+      buyOutPrice: "300",
+      startTime: "2024-10-02T12:00",
+      endTime: "2024-10-02T17:00",
+    },
+    {
+      id: 2,
+      fishName: "Betta",
+      method: "Buy Now",
+      startPrice: "150",
+      buyOutPrice: "300",
+      startTime: "2024-10-02T12:00",
+      endTime: "2024-10-02T17:00",
+    },
+    {
+      id: 2,
+      fishName: "Betta",
+      method: "Buy Now",
+      startPrice: "150",
+      buyOutPrice: "300",
+      startTime: "2024-10-02T12:00",
+      endTime: "2024-10-02T17:00",
+    },
+    {
+      id: 2,
+      fishName: "Betta",
+      method: "Buy Now",
+      startPrice: "150",
+      buyOutPrice: "300",
+      startTime: "2024-10-02T12:00",
+      endTime: "2024-10-02T17:00",
+    },
+    {
+      id: 2,
+      fishName: "Betta",
+      method: "Buy Now",
+      startPrice: "150",
+      buyOutPrice: "300",
+      startTime: "2024-10-02T12:00",
+      endTime: "2024-10-02T17:00",
+    },
   ]);
-
-  const Modal = ({ show, onClose, children }) => {
-    if (!show) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <button className="close-modal" onClick={onClose}>
-            &times;
-          </button>
-          {children}
-        </div>
-      </div>
-    );
-  };
 
   const [editForm, setEditForm] = useState({
     id: "",
@@ -106,12 +149,8 @@ function CreateRequest() {
 
   return (
     <div>
-      <button className="toggle-form-btn" onClick={() => setShowAddModal(true)}>
-        Create New Request
-      </button>
-
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>ID</th>
@@ -136,13 +175,13 @@ function CreateRequest() {
                 <td>{request.endTime}</td>
                 <td>
                   <button
-                    className="action-btn edit-btn"
+                    className={styles.actionBtn + " " + styles.editBtn}
                     onClick={() => handleEditRequest(request)}
                   >
                     <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
-                    className="action-btn delete-btn"
+                    className={styles.actionBtn + " " + styles.deleteBtn}
                     onClick={() => handleDeleteRequest(request.id)}
                   >
                     <FontAwesomeIcon icon={faXmark} />
@@ -153,37 +192,42 @@ function CreateRequest() {
           </tbody>
         </table>
       </div>
+      <button
+        className={styles.buttonkoi + " btn btn-danger"}
+        onClick={() => setShowAddModal(true)}
+      >
+        Create New Request
+      </button>
 
       <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
         <h2>Create New Request</h2>
-
-        <div className="form-container">
-          <div className="left-column">
-            <div className="import-box">
+        <div className={styles.formContainer}>
+          <div className={styles.leftColumn}>
+            <div className={styles.importBox}>
               <label htmlFor="importImage">Import Image</label>
               <input type="file" id="importImage" accept="image/*" />
             </div>
-            <div className="import-box">
+            <div className={styles.importBox}>
               <label htmlFor="importVideo">Import Video</label>
               <input type="file" id="importVideo" accept="video/*" />
             </div>
           </div>
 
-          <div className="right-column">
+          <div className={styles.rightColumn}>
             <input
               type="text"
               name="fishName"
               value={newRequest.fishName}
               onChange={handleAddInputChange}
               placeholder="Fish Name"
-              className="rounded-input"
+              className={styles.roundedInput}
             />
 
             <select
               name="method"
               value={newRequest.method}
               onChange={handleAddInputChange}
-              className="rounded-input"
+              className={styles.roundedInput}
             >
               <option value="" disabled>
                 Select Method
@@ -198,7 +242,7 @@ function CreateRequest() {
               value={newRequest.startPrice}
               onChange={handleAddInputChange}
               placeholder="Start Price"
-              className="rounded-input"
+              className={styles.roundedInput}
             />
 
             <input
@@ -207,7 +251,7 @@ function CreateRequest() {
               value={newRequest.buyOutPrice}
               onChange={handleAddInputChange}
               placeholder="Buy Out Price"
-              className="rounded-input"
+              className={styles.roundedInput}
             />
 
             <input
@@ -215,7 +259,7 @@ function CreateRequest() {
               name="startTime"
               value={newRequest.startTime}
               onChange={handleAddInputChange}
-              className="rounded-input"
+              className={styles.roundedInput}
             />
 
             <input
@@ -223,12 +267,86 @@ function CreateRequest() {
               name="endTime"
               value={newRequest.endTime}
               onChange={handleAddInputChange}
-              className="rounded-input"
+              className={styles.roundedInput}
             />
 
-            <button onClick={handleAddRequest}>Create Request</button>
+            <button className=" btn btn-danger" onClick={handleAddRequest}>
+              Create Request
+            </button>
           </div>
         </div>
+      </Modal>
+      <Modal show={showEditModal} onClose={() => setShowEditModal(false)}>
+        <h2>Edit Request</h2>
+        <input
+          type="text"
+          name="id"
+          value={editForm.id}
+          onChange={(e) => setEditForm({ ...editForm, id: e.target.value })}
+          placeholder="ID"
+          className={styles.roundedInput}
+        />
+        <input
+          type="text"
+          name="fishname"
+          value={editForm.fishName}
+          onChange={(e) =>
+            setEditForm({ ...editForm, fishName: e.target.value })
+          }
+          placeholder="Fish Name"
+          className={styles.roundedInput}
+        />
+        <input
+          type="text"
+          name="method"
+          value={editForm.method}
+          onChange={(e) => setEditForm({ ...editForm, method: e.target.value })}
+          placeholder="Method"
+          className={styles.roundedInput}
+        />
+        <input
+          className={styles.roundedInput}
+          type="text"
+          name="startPrice"
+          value={editForm.startPrice}
+          onChange={(e) =>
+            setEditForm({ ...editForm, startPrice: e.target.value })
+          }
+          placeholder="Start Price"
+        />
+        <input
+          className={styles.roundedInput}
+          type="text"
+          name="buyOutPrice"
+          value={editForm.buyOutPrice}
+          onChange={(e) =>
+            setEditForm({ ...editForm, buyOutPrice: e.target.value })
+          }
+          placeholder="Buy Out Price"
+        />
+        <input
+          className={styles.roundedInput}
+          type="text"
+          name="startTime"
+          value={editForm.startTime}
+          onChange={(e) =>
+            setEditForm({ ...editForm, startTime: e.target.value })
+          }
+          placeholder="Start Time"
+        />
+        <input
+          className={styles.roundedInput}
+          type="text"
+          name="endTime"
+          value={editForm.endTime}
+          onChange={(e) =>
+            setEditForm({ ...editForm, endTime: e.target.value })
+          }
+          placeholder="End Time"
+        />
+        <button className="btn btn-danger" onClick={handleSaveChanges}>
+          Save Changes
+        </button>
       </Modal>
     </div>
   );

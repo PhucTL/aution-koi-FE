@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Auction.css";
+import styles from "./Auction.module.css";
 
 function Auction() {
   const [auctions, setAuctions] = useState([
@@ -36,10 +36,10 @@ function Auction() {
   ]);
 
   return (
-    <div className="Auction">
+    <div className={styles.tableContainer}>
       <h1>Auctions</h1>
 
-      <table>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th>Name</th>
@@ -53,7 +53,13 @@ function Auction() {
             <tr key={index}>
               <td>{auction.name}</td>
               <td>
-                <span className={`status ${auction.status.toLowerCase()}`}>
+                <span
+                  className={`${styles.status} ${
+                    auction.status === "ACTIVE"
+                      ? styles.statusActive
+                      : styles.statusEnd
+                  }`}
+                >
                   {auction.status}
                 </span>
               </td>

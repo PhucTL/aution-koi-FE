@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
-import "./Breeder.css";
+import styles from "./Breeder.module.css";
 
 const Modal = ({ show, onClose, children }) => {
   if (!show) {
     return null;
   }
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-modal" onClick={onClose}>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalsContent}>
+        <button className={styles.closeModal} onClick={onClose}>
           &times;
         </button>
         {children}
@@ -58,10 +58,10 @@ function Breeder() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditForm({
-      ...editForm,
+    setEditForm((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleSaveChanges = () => {
@@ -74,8 +74,8 @@ function Breeder() {
 
   return (
     <div>
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>ID</th>
@@ -96,13 +96,13 @@ function Breeder() {
                 <td>{user.address}</td>
                 <td>
                   <button
-                    className="action-btn edit-btn"
+                    className={styles.actionBtn + " " + styles.editBtn}
                     onClick={() => handleEditUser(user)}
                   >
                     <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
-                    className="action-btn delete-btn"
+                    className={styles.actionBtn + " " + styles.deleteBtn}
                     onClick={() => handleDeleteUser(user.id)}
                   >
                     <FontAwesomeIcon icon={faXmark} />
@@ -115,13 +115,14 @@ function Breeder() {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h2>Edit Breeder</h2>
+        <h1>Edit Breeder</h1>
         <input
           type="text"
           name="name"
           value={editForm.name}
           onChange={handleInputChange}
           placeholder="Name"
+          className={styles.roundedInput}
         />
         <input
           type="email"
@@ -129,6 +130,7 @@ function Breeder() {
           value={editForm.email}
           onChange={handleInputChange}
           placeholder="Email"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -136,6 +138,7 @@ function Breeder() {
           value={editForm.phone}
           onChange={handleInputChange}
           placeholder="Phone"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -143,8 +146,11 @@ function Breeder() {
           value={editForm.address}
           onChange={handleInputChange}
           placeholder="Address"
+          className={styles.roundedInput}
         />
-        <button onClick={handleSaveChanges}>Save Changes</button>
+        <button className="btn btn-danger" onClick={handleSaveChanges}>
+          Save Changes
+        </button>
       </Modal>
     </div>
   );

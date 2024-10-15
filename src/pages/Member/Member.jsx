@@ -2,9 +2,23 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import "./Member.css";
-import "../style/Table.css";
+import styles from "./Member.module.css";
 
+const Modal = ({ show, onClose, children }) => {
+  if (!show) {
+    return null;
+  }
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalsContent}>
+        <button className={styles.closeModal} onClick={onClose}>
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
 function User() {
   const [users, setUsers] = useState([
     {
@@ -23,22 +37,6 @@ function User() {
     },
   ]);
 
-  const Modal = ({ show, onClose, children }) => {
-    if (!show) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <button className="close-modal" onClick={onClose}>
-            &times;
-          </button>
-          {children}
-        </div>
-      </div>
-    );
-  };
-
   const [editForm, setEditForm] = useState({
     id: "",
     name: "",
@@ -46,6 +44,7 @@ function User() {
     phone: "",
     address: "",
   });
+
   const [showModal, setShowModal] = useState(false);
 
   const handleEditUser = (user) => {
@@ -55,10 +54,10 @@ function User() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditForm({
-      ...editForm,
+    setEditForm((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleSaveChanges = () => {
@@ -73,11 +72,10 @@ function User() {
     const updatedUsers = users.filter((user) => user.id !== id);
     setUsers(updatedUsers);
   };
-
   return (
     <div>
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>ID</th>
@@ -98,13 +96,13 @@ function User() {
                 <td>{user.address}</td>
                 <td>
                   <button
-                    className="action-btn edit-btn"
+                    className={styles.actionBtn + " " + styles.editBtn}
                     onClick={() => handleEditUser(user)}
                   >
                     <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
-                    className="action-btn delete-btn"
+                    className={styles.actionBtn + " " + styles.deleteBtn}
                     onClick={() => handleDeleteUser(user.id)}
                   >
                     <FontAwesomeIcon icon={faXmark} />
@@ -116,13 +114,14 @@ function User() {
         </table>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h2>Edit User</h2>
+        <h2>Edit Breeder</h2>
         <input
           type="text"
           name="name"
           value={editForm.name}
           onChange={handleInputChange}
           placeholder="Name"
+          className={styles.roundedInput}
         />
         <input
           type="email"
@@ -130,6 +129,7 @@ function User() {
           value={editForm.email}
           onChange={handleInputChange}
           placeholder="Email"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -137,6 +137,7 @@ function User() {
           value={editForm.phone}
           onChange={handleInputChange}
           placeholder="Phone"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -144,8 +145,11 @@ function User() {
           value={editForm.address}
           onChange={handleInputChange}
           placeholder="Address"
+          className={styles.roundedInput}
         />
-        <button onClick={handleSaveChanges}>Save Changes</button>
+        <button className="btn btn-danger" onClick={handleSaveChanges}>
+          Save Changes
+        </button>
       </Modal>
     </div>
   );

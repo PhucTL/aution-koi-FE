@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import "./Request.css";
+import styles from "./Request.module.css";
 
-// Simulating the auction data
 const auction = [
   {
     AutionID: "1",
@@ -33,7 +32,6 @@ const requests = [
     buyoutPrice: "$150",
     time: "14/02/2025 20:00",
   },
-  // other requests...
 ];
 
 function Request() {
@@ -42,9 +40,9 @@ function Request() {
       return null;
     }
     return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <button className="close-modal" onClick={onClose}>
+      <div className={styles.modalOverlay}>
+        <div className={styles.modalsContent}>
+          <button className={styles.closeModal} onClick={onClose}>
             &times;
           </button>
           {children}
@@ -81,14 +79,76 @@ function Request() {
     const updatedAuction = auction.map((auction) =>
       auction.AutionID === editForm.AutionID ? editForm : auction
     );
-    setUsers(updatedAuction); // You should update the state here (if needed)
+    setUsers(updatedAuction);
     setShowModal(false);
   };
+  <Modal show={showModal} onClose={() => setShowModal(false)}>
+    <h2>Auction Details</h2>
+    <input
+      type="text"
+      name="AutionID"
+      value={editForm.AutionID}
+      onChange={handleInputChange}
+      placeholder="AuctionID"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="FishName"
+      value={editForm.FishName}
+      onChange={handleInputChange}
+      placeholder="Fish Name"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="Method"
+      value={editForm.Method}
+      onChange={handleInputChange}
+      placeholder="Method"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="StartPrice"
+      value={editForm.StartPrice}
+      onChange={handleInputChange}
+      placeholder="Start Price"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="BuyOutPrice"
+      value={editForm.BuyOutPrice}
+      onChange={handleInputChange}
+      placeholder="BuyOut Price"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="StartTime"
+      value={editForm.StartTime}
+      onChange={handleInputChange}
+      placeholder="Start Time"
+      className={styles.roundedInput}
+    />
+    <input
+      type="text"
+      name="EndTime"
+      value={editForm.EndTime}
+      onChange={handleInputChange}
+      placeholder="End Time"
+      className={styles.roundedInput}
+    />
+    <button className="btn btn-danger" onClick={handleSaveChanges}>
+      Save Changes
+    </button>
+  </Modal>;
 
   return (
     <div>
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>Staff Name</th>
@@ -103,8 +163,8 @@ function Request() {
                 <td>{request.breeder}</td>
                 <td>
                   <button
-                    className="view-btn"
-                    onClick={() => handleEditAuction(auction[0])} // Edit auction for first entry (for example)
+                    className={styles.viewBtn}
+                    onClick={() => handleEditAuction(auction[0])}
                   >
                     View
                   </button>
@@ -118,59 +178,6 @@ function Request() {
           </tbody>
         </table>
       </div>
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <h2>Auction Details</h2>
-        <input
-          type="text"
-          name="AutionID"
-          value={editForm.AutionID}
-          onChange={handleInputChange}
-          placeholder="AuctionID"
-        />
-        <input
-          type="text"
-          name="FishName"
-          value={editForm.FishName}
-          onChange={handleInputChange}
-          placeholder="Fish Name"
-        />
-        <input
-          type="text"
-          name="Method"
-          value={editForm.Method}
-          onChange={handleInputChange}
-          placeholder="Method"
-        />
-        <input
-          type="text"
-          name="StartPrice"
-          value={editForm.StartPrice}
-          onChange={handleInputChange}
-          placeholder="Start Price"
-        />
-        <input
-          type="text"
-          name="BuyOutPrice"
-          value={editForm.BuyOutPrice}
-          onChange={handleInputChange}
-          placeholder="BuyOut Price"
-        />
-        <input
-          type="text"
-          name="StartTime"
-          value={editForm.StartTime}
-          onChange={handleInputChange}
-          placeholder="Start Time"
-        />
-        <input
-          type="text"
-          name="EndTime"
-          value={editForm.EndTime}
-          onChange={handleInputChange}
-          placeholder="End Time"
-        />
-        <button onClick={handleSaveChanges}>Save Changes</button>
-      </Modal>
     </div>
   );
 }

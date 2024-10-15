@@ -1,0 +1,132 @@
+.tableContainer {
+  width: 100%;
+  max-width: 80%;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table thead th {
+  text-align: left;
+  padding: 10px;
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.actionBtn {
+  background: none;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.actionBtn:hover {
+  opacity: 0.7;
+}
+
+.editBtn {
+  color: #00bfff;
+}
+
+.deleteBtn {
+  color: #ff4c4c;
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalsContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 100%;
+}
+
+.closeModal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  margin: 150px 380px;
+  color: black;
+}
+
+.viewBtn {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.actionIcons span {
+  margin-right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.actionIcons span:hover {
+  opacity: 0.7;
+}
+.roundedInput {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  outline: none;
+}
+
+.roundedInput:focus {
+  border-color: #555;
+}
+.input {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+}

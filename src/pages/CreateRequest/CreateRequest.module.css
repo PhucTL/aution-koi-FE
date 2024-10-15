@@ -1,11 +1,11 @@
-/* body {
+body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
   margin: 0;
   padding: 0;
 }
 
-.Auction {
+/* .Auction {
   width: 80%;
   margin: auto;
   padding: 20px;
@@ -67,33 +67,9 @@ tr:last-child td {
   color: #00cc88;
   border: 1px solid #00cc88;
   background-color: #f0fff5;
-}
+} */
 
-.action-btn {
-  background: none;
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.action-btn:hover {
-  opacity: 0.7;
-}
-
-.edit-btn {
-  color: #00bfff;
-}
-
-.lock-btn {
-  color: #888;
-}
-
-.delete-btn {
-  color: #ff4c4c;
-}
-
-.view-btn {
+/* .view-btn {
   padding: 5px 10px;
   background-color: #f0f0f0;
   border-radius: 5px;
@@ -109,9 +85,37 @@ tr:last-child td {
 
 .action-icons span:hover {
   opacity: 0.7;
+} */
+
+/* .button {
+  padding: 12px 20px;
+  border-radius: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+} */
+.actionBtn {
+  background: none;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.form-container {
+.actionBtn:hover {
+  opacity: 0.7;
+}
+
+.editBtn {
+  color: #00bfff;
+}
+
+.deleteBtn {
+  color: #ff4c4c;
+}
+
+.formContainer {
   display: flex;
   justify-content: space-between;
   padding: 20px;
@@ -119,18 +123,18 @@ tr:last-child td {
   margin: 0 auto;
 }
 
-.left-column {
+.leftColumn {
   width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.right-column {
+.rightColumn {
   width: 55%;
 }
 
-.import-box {
+.importBox {
   width: 100%;
   height: 250px;
   border: 2px dashed #ccc;
@@ -144,7 +148,7 @@ tr:last-child td {
   margin-bottom: 20px;
 }
 
-.import-box input {
+.importBox input {
   position: absolute;
   top: 0;
   left: 0;
@@ -154,7 +158,7 @@ tr:last-child td {
   cursor: pointer;
 }
 
-.rounded-input {
+.roundedInput {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
@@ -165,20 +169,11 @@ tr:last-child td {
   outline: none;
 }
 
-.rounded-input:focus {
+.roundedInput:focus {
   border-color: #555;
 }
 
-button {
-  padding: 12px 20px;
-  border-radius: 30px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.table-container {
+.tableContainer {
   width: 100%;
   max-width: 80%;
   margin: auto;
@@ -186,25 +181,44 @@ button {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
 }
 
-table {
+.table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
-thead th {
+.table thead th {
   text-align: left;
   padding: 10px;
   background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-tbody td {
+.table tbody td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-.modal-overlay {
+.table tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -217,14 +231,15 @@ tbody td {
   z-index: 1000;
 }
 
-.modal-content {
-  background: red;
+.modalsContent {
+  background: white;
   padding: 20px;
   border-radius: 10px;
-  max-width: 60%;
+  width: 60%;
+  max-width: 100%;
 }
 
-.close-modal {
+.closeModal {
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -232,11 +247,11 @@ tbody td {
   top: 10px;
   right: 10px;
   cursor: pointer;
+  margin-right: 310px;
+  margin-top: 30px;
+  color: #000;
 }
 
-input {
-  display: block;
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-} */
+.buttonkoi {
+  margin-left: 79%;
+}

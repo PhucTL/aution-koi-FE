@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPen } from "@fortawesome/free-solid-svg-icons";
-import "./ManageStaff.css";
-
+import styles from "./ManageStaff.module.css";
+const Modal = ({ show, onClose, children }) => {
+  if (!show) {
+    return null;
+  }
+  return (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalsContent}>
+        <button className={styles.closeModal} onClick={onClose}>
+          &times;
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
 function ManageStaff() {
   const [staff, setStaff] = useState([
     {
@@ -24,22 +38,6 @@ function ManageStaff() {
       position: "Staff",
     },
   ]);
-
-  const Modal = ({ show, onClose, children }) => {
-    if (!show) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <button className="close-modal" onClick={onClose}>
-            &times;
-          </button>
-          {children}
-        </div>
-      </div>
-    );
-  };
 
   const [editForm, setEditForm] = useState({
     id: "",
@@ -105,12 +103,8 @@ function ManageStaff() {
 
   return (
     <div>
-      <button className="toggle-form-btn" onClick={() => setShowAddModal(true)}>
-        Add New Staff
-      </button>
-
-      <div className="table-container">
-        <table>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
           <thead>
             <tr>
               <th>ID</th>
@@ -118,8 +112,6 @@ function ManageStaff() {
               <th>Email</th>
               <th>Phone</th>
               <th>Address</th>
-              <th>Password</th>
-              <th>Position</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -131,17 +123,15 @@ function ManageStaff() {
                 <td>{member.email}</td>
                 <td>{member.phone}</td>
                 <td>{member.address}</td>
-                <td>{member.password}</td>
-                <td>{member.position}</td>
                 <td>
                   <button
-                    className="action-btn edit-btn"
+                    className={styles.actionBtn + " " + styles.editBtn}
                     onClick={() => handleEditStaff(member)}
                   >
                     <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
-                    className="action-btn delete-btn"
+                    className={styles.actionBtn + " " + styles.deleteBtn}
                     onClick={() => handleDeleteStaff(member.id)}
                   >
                     <FontAwesomeIcon icon={faXmark} />
@@ -152,6 +142,12 @@ function ManageStaff() {
           </tbody>
         </table>
       </div>
+      <button
+        className={styles.buttonkoi + " btn btn-danger"}
+        onClick={() => setShowAddModal(true)}
+      >
+        Add New Staff
+      </button>
 
       <Modal show={showAddModal} onClose={() => setShowAddModal(false)}>
         <h2>Add New Staff</h2>
@@ -161,6 +157,7 @@ function ManageStaff() {
           value={newStaff.name}
           onChange={handleAddInputChange}
           placeholder="Name"
+          className={styles.roundedInput}
         />
         <input
           type="email"
@@ -168,6 +165,7 @@ function ManageStaff() {
           value={newStaff.email}
           onChange={handleAddInputChange}
           placeholder="Email"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -175,6 +173,7 @@ function ManageStaff() {
           value={newStaff.phone}
           onChange={handleAddInputChange}
           placeholder="Phone"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -182,6 +181,7 @@ function ManageStaff() {
           value={newStaff.address}
           onChange={handleAddInputChange}
           placeholder="Address"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -189,6 +189,7 @@ function ManageStaff() {
           value={newStaff.password}
           onChange={handleAddInputChange}
           placeholder="Password"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -196,8 +197,11 @@ function ManageStaff() {
           value={newStaff.position}
           onChange={handleAddInputChange}
           placeholder="Position"
+          className={styles.roundedInput}
         />
-        <button onClick={handleAddStaff}>Add Staff</button>
+        <button className="btn btn-danger" onClick={handleAddStaff}>
+          Add Staff
+        </button>
       </Modal>
 
       <Modal show={showEditModal} onClose={() => setShowEditModal(false)}>
@@ -208,6 +212,7 @@ function ManageStaff() {
           value={editForm.name}
           onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
           placeholder="Name"
+          className={styles.roundedInput}
         />
         <input
           type="email"
@@ -215,6 +220,7 @@ function ManageStaff() {
           value={editForm.email}
           onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
           placeholder="Email"
+          className={styles.roundedInput}
         />
         <input
           type="text"
@@ -222,8 +228,10 @@ function ManageStaff() {
           value={editForm.phone}
           onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
           placeholder="Phone"
+          className={styles.roundedInput}
         />
         <input
+          className={styles.roundedInput}
           type="text"
           name="address"
           value={editForm.address}
@@ -232,7 +240,9 @@ function ManageStaff() {
           }
           placeholder="Address"
         />
-        <button onClick={handleSaveChanges}>Save Changes</button>
+        <button className="btn btn-danger" onClick={handleSaveChanges}>
+          Save Changes
+        </button>
       </Modal>
     </div>
   );
